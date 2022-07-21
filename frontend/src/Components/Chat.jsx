@@ -7,25 +7,25 @@ import axios from 'axios';
 
 import routes from './routes.js';
 import AddChannel from './modals/AddChannel.jsx';
-import ChannelList from './ChannelList.jsx';
-import Messages from './Messages.jsx';
+import ChannelList from './modals/ChannelList.jsx';
+import Messages from './modals/Messages.jsx';
 //slices
 import {
   addChannels,
   addChannel,
   removeChannel,
   renameChannel,
-} from './slices/channelsSlice.js';
-import { channelsSelectors } from './slices/channelsSlice.js';
+} from '../slices/channelsSlice.js';
+import { channelsSelectors } from '../slices/channelsSlice.js';
 import {
   addMessages,
   addMessage,
   deleteMessage,
   renameMessage,
-} from './slices/messagesSlice.js';
-import { messagesSelectors } from './slices/messagesSlice.js';
+} from '../slices/messagesSlice.js';
+import { messagesSelectors } from '../slices/messagesSlice.js';
 
-import { setCurrentChannel } from './slices/currentChannelSlice.js';
+import { setCurrentChannel } from '../slices/currentChannelSlice.js';
 //slices
 function Chat(socket) {
   console.log('chat rendered');
