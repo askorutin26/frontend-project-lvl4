@@ -4,9 +4,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
-import Chat from './Chat.jsx';
+import Login from './Components/Login.jsx';
+import Signup from './Components/Signup.jsx';
+import Chat from './Components/Chat.jsx';
 //
 function App(props) {
   const socket = props;
