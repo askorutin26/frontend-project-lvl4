@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import SubmitDelete from './modals/SumbitDelete.jsx';
-import RenameChannel from './modals/RenameChannel.jsx';
-import { setCurrentChannel } from './slices/currentChannelSlice.js';
+import SubmitDelete from '../modals/SubmitDelete.jsx';
+import RenameChannel from '../modals/RenameChannel.jsx';
+import { setCurrentChannel } from '../slices/currentChannelSlice.js';
 
 function ChannelsList(props) {
   const {

@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import routes from './routes.js';
+import routes from '../routes.js';
 
 export default function Login() {
   console.log('LOGIN WAS RENDERED');

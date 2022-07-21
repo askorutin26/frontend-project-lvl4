@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 import routes from '../routes.js';
-import AddChannel from './modals/AddChannel.jsx';
-import ChannelList from './modals/ChannelList.jsx';
-import Messages from './modals/Messages.jsx';
+import AddChannel from '../modals/AddChannel.jsx';
+import ChannelList from './ChannelsList.jsx'
+import Messages from './Messages.jsx';
 //slices
 import {
   addChannels,
