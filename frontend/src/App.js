@@ -7,12 +7,13 @@ import { Provider } from 'react-redux';
 import Login from './Components/Login.jsx';
 import Signup from './Components/Signup.jsx';
 import Chat from './Components/Chat.jsx';
+import store from '../slices/index.js';
 //
 function App(props) {
   const socket = props;
   console.log(socket);
   return (
-    <Provider >
+    <Provider store = {store}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Chat {...socket} />} />
