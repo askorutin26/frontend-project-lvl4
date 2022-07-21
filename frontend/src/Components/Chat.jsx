@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 
-import routes from './routes.js';
+import routes from '../routes.js';
 import AddChannel from './modals/AddChannel.jsx';
 import ChannelList from './modals/ChannelList.jsx';
 import Messages from './modals/Messages.jsx';
