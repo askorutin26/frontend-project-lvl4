@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+function App(props) {
+  const socket = props;
+  console.log(socket);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider >
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Chat {...socket} />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route
+            path='*'
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There is nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
-
 export default App;
