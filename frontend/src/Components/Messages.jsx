@@ -1,5 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 
 function Messages(props) {
   const {
@@ -10,7 +10,6 @@ function Messages(props) {
     show,
     handleClose,
     handleShow,
-    socket,
   } = props;
 
   const channelMessages = messages.filter(
@@ -21,7 +20,7 @@ function Messages(props) {
     const { name, id, channel } = message;
 
     return (
-      <div className='text-break mb-2' id={id} key={id}>
+      <div className="text-break mb-2" id={id} key={id}>
         <b>{username && username}</b>: {name}
       </div>
     );

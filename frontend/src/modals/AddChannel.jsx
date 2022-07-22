@@ -1,16 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
-
+import { Modal, FormGroup, FormControl } from "react-bootstrap";
+import { useWebSockets } from "../utils/index.js";
 const AddChannel = (props) => {
   const inputEl = useRef(null);
   useEffect(() => {
     inputEl.current.focus();
   });
-  const { channels, messages, show, handleClose, socket, store } = props;
+  const { newChannel } = useWebSockets();
 
-  const [channelName, setChannelName] = useState('');
-  const [error, setError] = useState('');
+  const { channels, show, handleClose } = props;
+
+  const [channelName, setChannelName] = useState("");
+  const [error, setError] = useState("");
   return (
     <Modal show={show}>
       <form
@@ -22,10 +24,9 @@ const AddChannel = (props) => {
           );
 
           if (alreadyExists !== undefined) {
-            setError('The channel with this name already exists');
+            setError("The channel with this name already exists");
           } else {
-            console.log(error);
-            socket.emit('newChannel', channelName);
+            newChannel(channelName);
             handleClose();
           }
         }}
@@ -33,10 +34,10 @@ const AddChannel = (props) => {
         <Modal.Header>
           <Modal.Title>Add new channel</Modal.Title>
           <button
-            type='button'
-            aria-label='Close'
-            data-bs-dismiss='modal'
-            className='btn btn-close'
+            type="button"
+            aria-label="Close"
+            data-bs-dismiss="modal"
+            className="btn btn-close"
             onClick={handleClose}
           ></button>
         </Modal.Header>
@@ -50,19 +51,19 @@ const AddChannel = (props) => {
                 setChannelName(e.target.value);
               }}
             />
-            {error && <p className='text-danger'>already exist</p>}
+            {error && <p className="text-danger">already exist</p>}
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <input className='btn btn-primary' type='submit' value='submit' />
+          <input className="btn btn-primary" type="submit" value="submit" />
           <button
-            type='button'
-            className='btn btn-secondary'
-            value='close'
+            type="button"
+            className="btn btn-secondary"
+            value="close"
             onClick={handleClose}
           >
-            {' '}
-            Close{' '}
+            {" "}
+            Close{" "}
           </button>
         </Modal.Footer>
       </form>

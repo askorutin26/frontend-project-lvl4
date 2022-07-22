@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
-
+import { Modal, FormGroup, FormControl } from "react-bootstrap";
+import { useWebSockets } from "../utils/index.js";
 const RenameChannel = (props) => {
   const inputEl = useRef(null);
   useEffect(() => {
     inputEl.current.focus();
   });
-  const { channels, messages, showRename, setShowRename, socket, deleteId } =
-    props;
+  const { renameChannel } = useWebSockets();
+  const { channels, messages, showRename, setShowRename, deleteId } = props;
 
-  const [channelName, setChannelName] = useState('');
-  const [error, setError] = useState('');
+  const [channelName, setChannelName] = useState("");
+  const [error, setError] = useState("");
   const channelToRename = channels.find(
     (channel) => channel.id === Number(deleteId)
   );
@@ -20,7 +20,7 @@ const RenameChannel = (props) => {
     (channel) => channel.name === channelName
   );
   const { id, removable, ...rest } = channelToRename;
-  const name = Object.values(rest).join('');
+  const name = Object.values(rest).join("");
 
   return (
     <Modal show={showRename}>
@@ -29,9 +29,9 @@ const RenameChannel = (props) => {
           e.preventDefault();
 
           if (alreadyExists !== undefined) {
-            setError('The channel with this name already exists');
+            setError("The channel with this name already exists");
           } else {
-            socket.emit('renameChannel', { id: deleteId, name: channelName });
+            renameChannel({ id: deleteId, name: channelName });
             setShowRename(false);
           }
         }}
@@ -39,10 +39,10 @@ const RenameChannel = (props) => {
         <Modal.Header>
           <Modal.Title>{`Rename channel "${name}"?`}</Modal.Title>
           <button
-            type='button'
-            aria-label='Close'
-            data-bs-dismiss='modal'
-            className='btn btn-close'
+            type="button"
+            aria-label="Close"
+            data-bs-dismiss="modal"
+            className="btn btn-close"
             onClick={(e) => {
               e.preventDefault();
               setShowRename(false);
@@ -59,22 +59,22 @@ const RenameChannel = (props) => {
                 setChannelName(e.target.value);
               }}
             />
-            {error && <p className='text-danger'>already exist</p>}
+            {error && <p className="text-danger">already exist</p>}
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <input className='btn btn-primary' type='submit' value='Submit' />
+          <input className="btn btn-primary" type="submit" value="Submit" />
           <button
-            type='button'
-            className='btn btn-secondary'
-            value='close'
+            type="button"
+            className="btn btn-secondary"
+            value="close"
             onClick={(e) => {
               e.preventDefault();
               setShowRename(false);
             }}
           >
-            {' '}
-            Close{' '}
+            {" "}
+            Close{" "}
           </button>
         </Modal.Footer>
       </form>
